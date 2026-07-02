@@ -1,3 +1,37 @@
+/* Stylopis s proměnnými na tlačítka */
+:root {
+     /* 60% Dominantní - světlé pozadí a text*/
+     --bg-primary: #ffffff;
+     --bg-light-mint: #f2faf8;
+     --bg-mint: #e4f7f2;
+     /*velmi jemný mint na střídání sekcí*/
+     --text-dark: #1e292b;
+     /* tmavě šedá s nádechem do tyrkysova (lepší než #000 */
+     --text-light: #ffffff;
+
+     /* 30% Sekundární - tyrkysová / mátová pro strukturu */
+     --brand-cyan: #00a896;
+     /* živá tyrkysová pro ikony a sekce*/
+     --brand-dark-cyan: #0f4c5c;
+     /* petrolejová */
+     /* tmavší (tyrkysová #028090)pro pozadí (zajistí kontrast pro bílý text */
+     --color-hover: #166477;
+
+     /* 10% Akcent - zlatá pro CTA a detaily*/
+     --gold-gradient: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 100%);
+     --gold-solid: #cda45e;
+     /* Pro linky a ohraničení, kde gradient nelze použít */
+
+     --mint-color: #98fb98;
+     --mint-hover: #98fb85;
+     --bg-gradient: linear-gradient(135deg, #eff1f5 0%, #c3ecef);
+     --text-main: #1f3537;
+     --text-muted: #578182;
+     --highlight-bg: #00ffef;
+     --card-bg: #ffffff;
+}
+
+
 @media screen and (max-width: 1024px) {
 
      html,
@@ -85,7 +119,7 @@
 
 @media screen and (max-width: 768px) {
 
-     .menu {
+     /* .menu {
           padding: 10px 20px;
      }
 
@@ -106,6 +140,94 @@
 
      .mobile-nav-icon {
           display: block;
+     }*/
+
+     .menu {
+          justify-content: flex-start;
+     }
+
+     .menu ul li {
+          margin: 15px;
+     }
+
+     .main-nav {
+
+          flex-direction: column;
+          position: fixed !important;
+          top: 0 !important;
+          right: -100%;
+          left: auto !important;
+          background: #f2faf8;
+          background-image: radial-gradient(circle at 85% 20%, rgba(74, 111, 165, 0.045) 0%, transparent 30%);
+          pointer-events: none !important;
+          height: 100vh;
+          width: 75% !important;
+          transform: none;
+          padding-top: 80px;
+          margin: 0 !important;
+          gap: 24px;
+          box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+          z-index: 9999;
+
+          /* Animace */
+          transition: right 0.9s ease-in-out;
+     }
+
+     /* Třída, kterou přidám pomocí JS pro vysunutí */
+     .main-nav.open {
+          right: 0 !important;
+          pointer-events: auto !important;
+     }
+
+     .main-nav li a {
+          width: 100%;
+          padding-left: 10px;
+          padding-right: 10px;
+          text-align: center;
+          color: #1e292b;
+          font-size: 25px;
+          display: block;
+          padding: 15px 0;
+          letter-spacing: 1.3px;
+          transition: all 0.3s;
+     }
+
+     /*.main-nav a {
+          font-size: 25px;
+          display: block;
+          padding: 15px 0;
+          letter-spacing: 1.3px;
+          transition: all 0.3s;
+     }*/
+
+     .main-nav li a:hover,
+     .main-nav li a:active {
+          background-color: transparent !important;
+          outline: none;
+     }
+
+     /* Tímto definitivně zabijete skryté pozadí při dotyku na mobilu */
+     .main-nav a {
+          -webkit-tap-highlight-color: transparent !important;
+     }
+
+     .mobile-nav-icon {
+          display: block;
+          position: absolute;
+          right: 20px;
+          top: 16px;
+          z-index: 10001;
+          /* musí být nad menu */
+          cursor: pointer;
+     }
+
+     .mobile-nav-icon img {
+          height: 40px;
+          width: auto;
+     }
+
+     .menu .logo {
+          margin-left: 25px;
      }
 
      .hero {
@@ -168,7 +290,7 @@
 
 @media screen and (max-width: 480px) {
 
-     .menu {
+     /* .menu {
           height: auto;
      }
 
@@ -180,7 +302,7 @@
      .main-nav li a {
           padding: 10px 8px;
           font-size: 15px;
-     }
+     }*/
 
      .hero {
           padding: 35px 14px;

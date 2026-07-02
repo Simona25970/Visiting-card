@@ -15,11 +15,15 @@ body {
      scroll-behavior: smooth;
      box-sizing: border-box !important;
      overflow-x: hidden !important;
+     -webkit-text-size-adjust: 100%;
+     animation: fade-in 0.8s ease-in-out;
 }
+
 
 a:focus,
 button:focus,
 .btn:focus {
+     background: none !important;
      outline: none !important;
      box-shadow: none !important;
 }
@@ -55,6 +59,26 @@ button:focus,
      --text-muted: #578182;
      --highlight-bg: #00ffef;
      --card-bg: #ffffff;
+}
+
+/*.hero-logo img {
+     width: 180px;
+     height: 150px;
+     margin: 20px;
+     float: right !important;
+}*/
+
+svg {
+     margin-right: 50px;
+     float: right !important;
+}
+
+svg path {
+     stroke-width: 0.6px;
+}
+
+svg rect {
+     stroke-width: 0.9px;
 }
 
 h4 {
@@ -94,7 +118,7 @@ h4 {
 /* Menu */
 .menu {
      display: flex;
-     background-color: var(--bg-mint);
+     background: var(--bg-mint);
      background-image: radial-gradient(circle at 85% 60%, rgba(74, 111, 165, 0.045) 0%, transparent 20%),
           radial-gradient(circle at 80% 80%, rgba(74, 111, 165, 0.06) 0%, transparent 18%);
      height: 70px;
@@ -133,14 +157,21 @@ h4 {
      transition: all 0.3s ease-in-out;
 }
 
-.main-nav li a:hover {
+.main-nav li a:hover,
+.main-nav li a:active {
      color: var(--brand-cyan);
+     background-color: transparent !important;
 }
+
+.menu.scrolled {
+     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
+     /* Jemná spodní linka */
+}
+
 
 /* Mobile menu - hamburger */
 .mobile-nav-icon {
      display: none;
-     float: right;
      cursor: pointer;
 }
 
@@ -151,14 +182,21 @@ h4 {
 
 /* Mobilní overlay - překrytí */
 .mobile-nav-back {
-     display: none;
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100vh;
+     background: rgba(0, 0, 0, 0.5);
      opacity: 0;
-     transition: opacity 0.3s ease;
+     z-index: 9998 !important;
+     pointer-events: none;
+     transition: opacity 0.5s ease-in-out;
 }
 
-.menu.scrolled {
-     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
-     /* Jemná spodní linka */
+.mobile-nav-back.open {
+     opacity: 1;
+     pointer-events: auto !important;
 }
 
 /* Hero */
@@ -276,6 +314,47 @@ h3 {
      letter-spacing: 1.2px;
      text-align: left;
      font-size: 18px;
+}
+
+/* Dekuji */
+.thanks {
+     text-align: center;
+     padding: 60px 20px;
+}
+
+.thanks h1 {
+     font-size: 32px;
+     color: var(--brand-dark-cyan);
+     margin-bottom: 20px;
+}
+
+.thanks p {
+     font-size: 18px;
+     color: #666;
+     font-weight: 500;
+     margin-bottom: 30px;
+}
+
+.thanks a {
+     display: inline-block;
+     align-items: center;
+     justify-content: left;
+     background: var(--gold-solid);
+     border: 1px solid var(--gold-solid);
+     color: var(--text-main);
+     padding: 8px 16px;
+     margin: 20px;
+     margin-top: 50px;
+     text-decoration: none !important;
+     letter-spacing: 2px;
+     font-weight: bold;
+     font-size: 18px;
+     border-radius: 10px;
+     cursor: pointer;
+}
+
+.thanks a:hover {
+     background: var(--gold-solid) !important;
 }
 
 .button-wrappers {
@@ -516,6 +595,14 @@ h3 {
      line-height: 2;
 }
 
+.author {
+     margin-bottom: 0;
+     width: 180px;
+     height: 180px;
+     float: right;
+     margin-right: 35px;
+}
+
 /* FAQ */
 .faq-box {
      max-width: 800px;
@@ -653,7 +740,7 @@ details[open] summary::after {
      position: absolute;
      height: 70%;
      width: 2px;
-     right: -30px;
+     right: -100px;
      top: 50%;
      transform: translateY(-50%);
      background: var(--bg-mint);
@@ -731,7 +818,7 @@ input:focus {
      margin-top: 15px;
 }
 
-.right-side .button input[type="button"] {
+.right-side .button input[type="submit"] {
      color: var(--bg-light-mint);
      font-size: 18px;
      font-weight: 600;
@@ -743,14 +830,145 @@ input:focus {
      cursor: pointer;
 }
 
-
 .right-side .button input[type="button"]:hover {
      background: #166477;
 }
 
+.right-side #form-message {
+     color: #000;
+     margin-top: 15px;
+     transition: opacity 0.5s ease;
+}
+
+.right-side #form-message.show {
+     opacity: 1;
+}
+
+.loading::after {
+     content: "...";
+     animation: dots 2s steps(3, end) infinite;
+}
+
+@keyframes dots {
+     0% {
+          content: ".";
+     }
+
+     33% {
+          content: "..";
+     }
+
+     66% {
+          content: "...";
+     }
+}
+
+.right-side .protection-container {
+     display: flex;
+     /* Zapne moderní řazení prvků */
+     align-items: flex-start;
+     /* Zarovná čtvereček k hornímu okraji prvního řádku textu */
+     gap: 10px;
+     /* Udělá mezeru mezi čtverečkem a textem */
+     margin: 15px 0;
+     /* Mezera nad a pod celým prvkem */
+     text-align: left;
+     /* Zajistí zarovnání textu doleva */
+     cursor: pointer;
+     user-select: none;
+}
+
+.right-side .protection-container input[type="checkbox"] {
+     width: 20px;
+     /* Fixní šířka čtverečku, aby se nezmenšoval */
+     height: 20px;
+     min-width: 25px;
+     margin-top: 2px;
+     margin-left: 2%;
+     /* Jemné doladění výšky čtverečku k textu */
+     cursor: pointer;
+     z-index: 10;
+     touch-action: manipulation;
+}
+
+.right-side .protection-container label {
+     display: inline-block;
+     font-size: 15px;
+     /* O něco menší písmo, aby se text na mobilu lépe vešel */
+     line-height: 1.4;
+     /* Příjemnější mezery mezi řádky textu */
+     cursor: pointer;
+     touch-action: manipulation;
+}
+
+/* Nastavení barvy odkazu uvnitř kontejneru se souhlasem */
+.protection-container label a {
+     color: var(--text-muted);
+     font-size: 13px;
+     text-decoration: underline;
+     /* Podtržení, aby byl odkaz poznat */
+     font-weight: 600;
+     /*  mírné tučné zvýraznění */
+}
+
+/* Cookie */
+.part {
+     background: var (--bg-light-mint);
+     max-width: 1200px;
+     margin: 15px auto;
+     margin-top: 85px;
+}
+
+.cookie-text h3 {
+     color: black;
+     font-weight: 700;
+     font-size: 32px;
+     margin: 40px;
+     padding-top: 20px;
+}
+
+.cookie-concept {
+     color: #4c4c4c;
+     margin: 40px;
+     margin-top: 10px;
+     font-size: 1.2em;
+     line-height: 1.8;
+}
+
+.cookie-links a {
+     border-bottom: 1px solid #4c4c4c;
+     color: #4a6fa5;
+     text-decoration: none !important;
+     margin: 40px;
+     font-size: 1.2em;
+}
+
+/* Zásady ochrany */
+.protection-title h1 {
+     color: black;
+     font-weight: 700;
+     font-size: 32px;
+     margin: 40px;
+     padding-top: 120px;
+}
+
+.protection-text h4 {
+     color: black;
+     font-weight: 700;
+     font-size: 28px;
+     margin: 20px;
+     padding-top: 10px;
+}
+
+.protection-text p {
+     margin: 20px;
+     padding-left: 20px;
+     text-indent: -9px;
+     font-size: 1.2em;
+     line-height: 1.6;
+}
 
 
-/* znovu použitelné */
 /* Definujeme animaci */
 @keyframes fadeIn {
      from {
@@ -788,6 +1006,146 @@ input:focus {
      transform: translateY(0);
 }
 
+/* Footer */
+footer {
+     width: 100%;
+     text-align: center;
+     font-size: 15px;
+     padding: 40px 100px 15px;
+}
+
+footer p {
+     color: var(--brand-dark-cyan);
+}
+
+footer a {
+     color: var(--text-muted);
+     font-size: 15px;
+     padding: 15px;
+     text-decoration: none;
+}
+
+/* Cookies */
+.cookie-bar {
+     position: fixed;
+     bottom: 20px;
+     left: 0;
+     max-width: 400px;
+     width: 100%;
+     background: var(--bg-primary);
+     border-radius: 8px;
+     border: 1px solid #d3d3d3;
+     padding: 15px 25px;
+     z-index: 100;
+}
+
+.cookie-bar .consent {
+     display: flex;
+     align-items: center;
+     column-gap: 15px;
+     color: var(--brand-dark-cyan);
+     font-size: 17px;
+     font-weight: 600;
+}
+
+.cookie-bar .consent h2 {
+     font-size: 17px;
+     color: var(--brand-dark-cyan);
+}
+
+.cookie-bar .consent i {
+     font-size: 20px;
+}
+
+.cookie-bar p {
+     color: var(--text-dark);
+     padding-top: 10px;
+     font-size: 14px;
+}
+
+.cookie-buttons {
+     display: flex;
+     margin-top: 16px;
+     width: 100%;
+     align-items: center;
+     justify-content: space-between;
+}
+
+.cookie-buttons .button-cookiefull {
+     padding: 8px;
+     font-size: 15px;
+     color: var(--card-bg);
+     border: none;
+     border-radius: 4px;
+     background: var(--brand-dark-cyan);
+     width: calc(100% / 2 - 10px);
+     font-weight: 600;
+     letter-spacing: 2px;
+     cursor: pointer;
+     transition: all 0.2s ease;
+}
+
+.cookie-buttons .button-cookiefull:hover {
+     background: var(--color-hover) !important;
+}
+
+.cookie-buttons .button-cookieempty {
+     padding: 8px;
+     border: 1px solid var(--text-muted);
+     border-radius: 4px;
+     background: transparent;
+     font-weight: 600;
+     letter-spacing: 2px;
+     cursor: pointer;
+     width: calc(100% / 2 - 10px);
+     transition: all 0.2s ease;
+}
+
+.cookie-buttons .button-cookieempty:hover {
+     background: var(--color-hover);
+}
+
+.cookie-buttons .button-cookieempty a {
+     color: var(--text-dark);
+     font-size: 15px;
+     text-decoration: none;
+}
+
+.cookie-buttons .button-cookieempty a:hover {
+     text-decoration: underline;
+     color: #fff;
+}
+
+/* Zásady ochrany */
+
+
+/* Šipka */
+#scrollToTop {
+     display: none;
+     position: fixed;
+     bottom: 30px;
+     right: 30px;
+     z-index: 1000;
+     border: 1px solid var(--text-main);
+     outline: none;
+     background-color: var(--text-muted);
+     color: var(--bg-primary);
+     cursor: pointer;
+     padding: 10px;
+     border-radius: 8px;
+     font-size: 14px;
+     transition: 0.3s;
+     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#scrollToTop:hover {
+     border: 1px solid var(--text-main);
+     background-color: var(--brand-dark-cyan) !important;
+     /* při najetí bude petrolejová */
+     transform: translateY(-5px);
+}
+
+/* Znovu použitelné */
 .card-divider {
      height: 1px;
      background: linear-gradient(to right, transparent, #cda45e, transparent);
@@ -801,6 +1159,12 @@ input:focus {
      margin-top: 30px;
 }
 
+.divider {
+     height: 1px;
+     background: linear-gradient(to right, transparent, var(--color-hover), transparent);
+     margin: 20px 0;
+}
+
 /* Tato třída jen otočí směr u konkrétního boxu */
 .reversed {
      flex-direction: row-reverse;
@@ -810,3 +1174,18 @@ input:focus {
      max-width: 100%;
      margin: 0 auto;
 }
+
+/* užitečné kódy */
+
+/*filter: invert(1);
+/* filter na ikonu hamburgeru, když je tmavším pozadí (černá) a potřebuji bílou*/
+
+/* overflow = přetékání textu
+   marquee = vyjížděcí text*/
+
+/* Přesné zarovnání na střed výšky řádku - ikony atd. */
+/* vertical-align: middle;
+
+/*  box-shadow: 0 30px 18px -4px rgba(11, 11, 12, 0.08),
+ 0 6px 6px -4px rgba(11, 11, 12, 0.05);
+ box-shadow -- nadnášející */
