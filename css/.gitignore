@@ -1,0 +1,7 @@
+# Ignorovat složku s hotovým minifikovaným webem
+dist/
+build/
+
+# Ignorovat pomocné složky nástrojů
+node_modules/
+.DS_Store
