@@ -46,9 +46,9 @@ $(document).ready(function () {
 
           // výměna ikonek
           if (nav.hasClass('open')) {
-               icon.attr("src", "img/crossMenu.png");
+               icon.attr("src", "img/crossMenu.webp");
           } else {
-               icon.attr("src", "img/hamburgerMenu.png");
+               icon.attr("src", "img/hamburgerMenu.webp");
           }
      });
 
@@ -64,7 +64,7 @@ $(document).ready(function () {
                nav.removeClass('open');
 
                // Vrácení ikonky zpět na hamburger
-               icon.attr("src", "img/hamburgerMenu.png");
+               icon.attr("src", "img/hamburgerMenu.webp");
           }
 
 
@@ -72,7 +72,7 @@ $(document).ready(function () {
           $('.mobile-nav-back').click(function () {
                $('.jq--main-nav').removeClass('open');
                $('.mobile-nav-back').removeClass('open');
-               $('.jq--nav-icon').attr("src", "img/hamburgerMenu.png");
+               $('.jq--nav-icon').attr("src", "img/hamburgerMenu.webp");
           });
      });
 
@@ -80,7 +80,7 @@ $(document).ready(function () {
      $('.jq--main-nav li a').click(function () {
           $('.jq--main-nav').removeClass('open');
           $('.mobile-nav-back').removeClass('open'); // zavře i pozadí
-          $('.jq--nav-icon').attr("src", "img/hamburgerMenu.png");
+          $('.jq--nav-icon').attr("src", "img/hamburgerMenu.webp");
      });
 });
 
