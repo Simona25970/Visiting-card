@@ -11,15 +11,12 @@
      <link rel="icon" type="img/webp" sizes="32x32" href="img/favicon-32x32.webp">
      <link rel="preconnect" href="https://googleapis.com">
      <link rel="preconnect" href="https://gstatic.com" crossorigin>
-     <link href="https://fonts.googleapis.com/css2?family=Yeseva One:wght@400;500;600;700;800&family=Nunito Sans:wght@500;700;800&display=swap"
-          rel="stylesheet">
+     rel="stylesheet">
      <link rel="stylesheet" href="https://cloudflare.com" media="print" onload="this.media='all'">
-     <link rel="stylesheet" href="css/style.css">
-
+     <link rel="stylesheet" href="css/style.min.css">
      <link rel="stylesheet" href="css/all.min.css">
-     <link rel="stylesheet" href="css/queries.css">
      <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-          integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+          integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous" defer></script>
 </head>
 
 <body>
@@ -30,12 +27,14 @@
 
                <!-- Hamburger -->
                <div class="mobile-nav-icon">
-                    <img src="img/hamburgerMenu.webp" alt="" class="jq--nav-icon">
+                    <img src="img/hamburgerMenu.webp" alt="" width="32" height="32" decoding="async"
+                         class="jq--nav-icon">
                </div>
 
                <!-- Logo -->
                <a href="#" class="logo">
-                    <img src="img/logo_small.webp" alt="">
+                    <img src="img/logo_small.webp" alt="Simonaweb" width="200" height="60" decoding="async"
+                         class="logo">
                </a>
 
                <!-- Navigace -->
@@ -285,9 +284,13 @@
                          </div>
 
                          <!-- Samotný oříznutý obrázek webu-->
-                         <div class="browser-content">
-                              <img src="img/mlm-nahled.webp" alt="" width="662" height="319">
-                         </div>
+                         <picture>
+                              <source media="(max-width: 768px)" srcset="img/mlm-nahled-maly.webp">
+                              <div class="browser-content">
+                                   <img src="img/mlm-nahled.webp" fetchpriority="high" alt="" width="662" height="319"
+                                        style="max-inline-size: 100%; block-size: auto;">
+                              </div>
+                         </picture>
 
                          <h5>Webová prezentace pro MLM podnikání</h5>
                          <div class="card-divider"></div>
@@ -318,9 +321,14 @@
                          </div>
 
                          <!-- Samotný oříznutý obrázek webu-->
-                         <div class="browser-content">
-                              <img src="img/library-nahled.webp" alt="" width="100%" height="100%">
-                         </div>
+
+                         <picture>
+                              <source media="(max-width: 768px)" srcset="img/libraly-nahled-maly.webp">
+                              <div class="browser-content">
+                                   <img src="img/library-nahled.webp" fetchpriority="high" alt="" width="662"
+                                        height="319" style="max-inline-size: 100%; block-size: auto;">
+                              </div>
+                         </picture>
 
                          <h5>Jazyková knihovna s věstavěným testováním</h5>
                          <p>Webová aplikaca vytvořená pro kamaráda, který potřeboval efektivní nástroj na procvičování
@@ -353,9 +361,14 @@
                          </div>
 
                          <!-- Samotný oříznutý obrázek webu-->
-                         <div class="browser-content">
-                              <img src="img/tree.webp" alt="" width="100%" height="100%">
-                         </div>
+
+                         <picture>
+                              <source media="(max-width: 768px)" srcset="img/tree-maly.webp">
+                              <div class="browser-content">
+                                   <img src="img/tree.webp" fetchpriority="high" alt="" width="662" height="319"
+                                        style="max-inline-size: 100%; block-size: auto;">
+                              </div>
+                         </picture>
 
                          <h5>Interaktivní systém pro správu a vizualizaci týmových struktur</h5>
 
@@ -384,9 +397,14 @@
                          </div>
 
                          <!-- Samotný oříznutý obrázek webu-->
-                         <div class="browser-content">
-                              <img src="img/clients.webp" alt="" width="100%" height="100%">
-                         </div>
+
+                         <picture>
+                              <source media="(max-width: 768px)" srcset="img/clients-maly.webp">
+                              <div class="browser-content">
+                                   <img src="img/clients.webp" fetchpriority="high" alt="" width="662" height="319"
+                                        style="max-inline-size: 100%; block-size: auto;">
+                              </div>
+                         </picture>
 
                          <h5>Interní CRM systém pro správu klientských zakázek</h5>
                          <div class="card-divider"></div>
@@ -739,7 +757,7 @@
      </div>
 
 
-     <script src="js/script.js" defer></script>
+     <script src="js/script.min.js" defer></script>
 </body>
 
 </html>
